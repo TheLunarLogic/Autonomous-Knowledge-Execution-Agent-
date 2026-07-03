@@ -21,7 +21,7 @@ export default function AnswerCard({ data, onApprove, onReject }) {
       </div>
 
       {/* Approval Warning */}
-      {require_approval && (
+      {require_approval && !data.isHistory && (
         <div className="approval-banner">
           <span>🔒 This action requires your approval before execution.</span>
           <div className="approval-actions">

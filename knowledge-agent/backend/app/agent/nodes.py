@@ -160,7 +160,8 @@ def decide_node(state: dict) -> dict:
     state["chosen_action"] = chosen
 
     # Check if this action requires approval
-    state["require_approval"] = chosen in CRITICAL_ACTIONS
+    # If it is already approved, we don't require approval anymore
+    state["require_approval"] = (chosen in CRITICAL_ACTIONS) and not state.get("is_approved", False)
 
     logger.info("[decide] Chosen action: %s (approval: %s)", chosen, state["require_approval"])
     return state

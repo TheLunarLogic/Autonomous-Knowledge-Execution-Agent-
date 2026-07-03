@@ -50,7 +50,7 @@ export default function Home() {
 
   const handleHistoryClick = (item) => {
     setCurrentQuery(item.query);
-    setResult(item);
+    setResult({ ...item, isHistory: true });
     setIsLoading(false);
     setError(null);
   };
