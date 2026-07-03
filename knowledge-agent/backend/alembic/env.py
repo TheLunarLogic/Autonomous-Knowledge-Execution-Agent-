@@ -23,8 +23,8 @@ from app.core.config import settings  # noqa: E402
 # Alembic Config object
 config = context.config
 
-# Override sqlalchemy.url from our app settings
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+# Override sqlalchemy.url from our app settings (escape % for ConfigParser interpolation)
+config.set_main_option("sqlalchemy.url", str(settings.DATABASE_URL).replace("%", "%%"))
 
 # Set up Python logging from alembic.ini
 if config.config_file_name is not None:

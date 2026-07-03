@@ -171,6 +171,12 @@ def execute_node(state: dict) -> dict:
     query = state["query"]
     docs = state.get("retrieved_docs", [])
     reasoning = state.get("reasoning", "")
+    
+    # Approval flow: skip execution if it requires approval but isn't approved
+    if state.get("require_approval", False) and not state.get("is_approved", False):
+        logger.info("[execute] Skipping execution — requires user approval for '%s'", action_name)
+        state["result"] = f"Action '{action_name}' requires explicit user approval before execution."
+        return state
 
     logger.info("[execute] Running action: %s", action_name)
 
@@ -187,6 +193,15 @@ def explain_node(state: dict) -> dict:
     action = state.get("chosen_action", "unknown")
     reasoning = state.get("reasoning", "")
     result = state.get("result", "")
+    
+    # If waiting for approval, provide a specific explanation
+    if state.get("require_approval", False) and not state.get("is_approved", False):
+        state["explanation"] = (
+            f"I decided to run the '{action}' action because your query '{query}' "
+            f"triggers a critical operation. For your security, this requires your explicit approval to proceed."
+        )
+        logger.info("[explain] Generated approval-required explanation")
+        return state
 
     logger.info("[explain] Generating explanation...")
 

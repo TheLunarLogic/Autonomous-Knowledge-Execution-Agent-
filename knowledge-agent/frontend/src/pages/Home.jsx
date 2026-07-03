@@ -8,13 +8,15 @@ export default function Home() {
   const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentQuery, setCurrentQuery] = useState("");
 
-  const handleSubmit = async (query) => {
+  const handleSubmit = async (query, isApproved = false) => {
     setIsLoading(true);
     setError(null);
+    setCurrentQuery(query);
 
     try {
-      const data = await askAgent(query);
+      const data = await askAgent(query, isApproved);
       setResult(data);
       setHistory((prev) => [{ query, ...data, time: new Date() }, ...prev]);
     } catch (err) {
@@ -27,7 +29,9 @@ export default function Home() {
   };
 
   const handleApprove = () => {
-    alert("Action approved! (In production, this would trigger execution)");
+    if (currentQuery) {
+      handleSubmit(currentQuery, true);
+    }
   };
 
   return (

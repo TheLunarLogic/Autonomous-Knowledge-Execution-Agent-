@@ -28,6 +28,7 @@ class AgentState(TypedDict):
     result: str
     explanation: str
     require_approval: bool
+    is_approved: bool
     memory: list[dict]  # short-term memory — last N queries
 
 
@@ -58,12 +59,13 @@ def build_agent_graph() -> StateGraph:
 agent_graph = build_agent_graph()
 
 
-async def run_agent(query: str, memory: list[dict] | None = None) -> dict:
+async def run_agent(query: str, memory: list[dict] | None = None, is_approved: bool = False) -> dict:
     """Run a query through the full agent pipeline.
 
     Args:
         query: The user's natural language question.
         memory: Optional list of previous query/action pairs for context.
+        is_approved: True if the user has explicitly approved this critical action execution.
 
     Returns:
         Final agent state dict with all fields populated.
@@ -76,6 +78,7 @@ async def run_agent(query: str, memory: list[dict] | None = None) -> dict:
         "result": "",
         "explanation": "",
         "require_approval": False,
+        "is_approved": is_approved,
         "memory": memory or [],
     }
 

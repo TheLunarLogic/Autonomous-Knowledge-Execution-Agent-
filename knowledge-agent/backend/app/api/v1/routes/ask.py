@@ -32,10 +32,14 @@ async def ask_agent(
     """Run a query through the full agent pipeline."""
     global _memory
 
-    logger.info("Received query: '%s'", request.query[:80])
+    logger.info("Received query: '%s' (approved: %s)", request.query[:80], request.is_approved)
 
     # Run the agent graph
-    result = await run_agent(query=request.query, memory=_memory)
+    result = await run_agent(
+        query=request.query,
+        memory=_memory,
+        is_approved=request.is_approved
+    )
 
     # Save to audit log
     await save_audit_log(session, result)

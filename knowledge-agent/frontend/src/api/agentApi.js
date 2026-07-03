@@ -9,10 +9,11 @@ const api = axios.create({
 /**
  * Send a query to the knowledge agent.
  * @param {string} query — user's natural language question
+ * @param {boolean} is_approved — whether the user has approved critical execution
  * @returns {Promise<{answer: string, action_taken: string, explanation: string, require_approval: boolean}>}
  */
-export async function askAgent(query) {
-  const response = await api.post("/ask", { query });
+export async function askAgent(query, is_approved = false) {
+  const response = await api.post("/ask", { query, is_approved });
   return response.data;
 }
 

@@ -15,6 +15,10 @@ class QueryRequest(BaseModel):
         description="The user's natural language question",
         examples=["What wireless headphones do you have?"],
     )
+    is_approved: bool = Field(
+        default=False,
+        description="True if the user has explicitly approved a critical action",
+    )
 
 
 class QueryResponse(BaseModel):
