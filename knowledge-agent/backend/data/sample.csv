@@ -1,0 +1,16 @@
+id,name,department,role,skills,location,hire_date,status
+EMP-001,Sarah Chen,Engineering,Senior Software Engineer,"Python, FastAPI, Kubernetes, AWS",San Francisco,2021-03-15,Active
+EMP-002,Marcus Thompson,Engineering,Staff ML Engineer,"PyTorch, LangChain, MLOps, Python",New York,2020-07-01,Active
+EMP-003,Priya Patel,Product,Senior Product Manager,"Roadmapping, A/B Testing, SQL, Analytics",London,2022-01-10,Active
+EMP-004,James Wilson,Engineering,DevOps Lead,"Terraform, Docker, CI/CD, AWS, GCP",Austin,2019-11-20,Active
+EMP-005,Aiko Tanaka,Design,UX Design Lead,"Figma, User Research, Prototyping, Design Systems",Tokyo,2021-08-05,Active
+EMP-006,Carlos Rivera,Engineering,Backend Engineer,"Go, PostgreSQL, Redis, gRPC",Berlin,2023-02-14,Active
+EMP-007,Emily Larsson,Data Science,Data Analyst,"SQL, Python, Tableau, dbt",Stockholm,2022-06-30,Active
+EMP-008,David Kim,Security,Security Engineer,"Penetration Testing, SIEM, Zero Trust, SOC2",San Francisco,2020-04-22,Active
+EMP-009,Fatima Al-Rashid,Marketing,Growth Marketing Manager,"SEO, Google Ads, Content Strategy, HubSpot",Dubai,2023-05-01,Active
+EMP-010,Liam O'Brien,Engineering,Frontend Engineer,"React, TypeScript, Next.js, GraphQL",Dublin,2022-09-12,Active
+EMP-011,Nina Volkov,HR,People Operations Lead,"HRIS, Compensation Analysis, Onboarding, Compliance",New York,2021-01-18,Active
+EMP-012,Rafael Santos,Engineering,Mobile Engineer,"React Native, Swift, Kotlin, Firebase",Sao Paulo,2023-07-25,Active
+EMP-013,Hannah Weber,Finance,Financial Analyst,"Excel, SAP, Financial Modeling, FP&A",Munich,2022-04-01,Active
+EMP-014,Arjun Mehta,Engineering,QA Lead,"Selenium, Cypress, Load Testing, Test Strategy",Bangalore,2020-10-10,Active
+EMP-015,Sophie Dumont,Customer Success,CS Manager,"Zendesk, Intercom, Churn Analysis, NPS",Paris,2023-03-08,Active

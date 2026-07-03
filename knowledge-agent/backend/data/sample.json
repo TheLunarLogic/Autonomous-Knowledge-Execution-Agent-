@@ -1,0 +1,162 @@
+[
+  {
+    "id": "PROD-001",
+    "name": "AuraSound Pro X1 Wireless Headphones",
+    "category": "Audio",
+    "description": "Premium over-ear wireless headphones with adaptive noise cancellation, 40-hour battery life, Hi-Res Audio support, and memory foam cushions. Features Bluetooth 5.3 and multipoint connection for seamless device switching.",
+    "price": 349.99,
+    "specs": {"driver_size": "50mm", "frequency_response": "4Hz-40kHz", "weight": "254g", "connectivity": "Bluetooth 5.3, 3.5mm AUX"}
+  },
+  {
+    "id": "PROD-002",
+    "name": "Velocity UltraBook 15 Pro",
+    "category": "Laptops",
+    "description": "Ultra-thin 15.6-inch laptop with 14th Gen Intel Core i9 processor, 32GB DDR5 RAM, 1TB NVMe SSD, and NVIDIA RTX 4060 GPU. 2.8K OLED display with 120Hz refresh rate.",
+    "price": 1899.99,
+    "specs": {"processor": "Intel Core i9-14900H", "ram": "32GB DDR5", "storage": "1TB NVMe", "display": "15.6\" 2.8K OLED 120Hz"}
+  },
+  {
+    "id": "PROD-003",
+    "name": "NexaFit Smartwatch Series 5",
+    "category": "Wearables",
+    "description": "Advanced health-tracking smartwatch with ECG monitoring, blood oxygen saturation, sleep analysis, and GPS. Titanium case with sapphire crystal display, 7-day battery life.",
+    "price": 499.99,
+    "specs": {"display": "1.4\" AMOLED", "battery_life": "7 days", "water_resistance": "5ATM", "sensors": "ECG, SpO2, accelerometer, gyroscope"}
+  },
+  {
+    "id": "PROD-004",
+    "name": "CloudView 4K Smart Monitor 32",
+    "category": "Monitors",
+    "description": "32-inch 4K UHD monitor with USB-C PD 90W, built-in webcam, speakers, and KVM switch. IPS panel with 99% DCI-P3 color accuracy. Ideal for remote work and creative professionals.",
+    "price": 699.99,
+    "specs": {"resolution": "3840x2160", "panel": "IPS", "ports": "USB-C PD 90W, HDMI 2.1, DisplayPort 1.4", "refresh_rate": "60Hz"}
+  },
+  {
+    "id": "PROD-005",
+    "name": "SwiftCharge 200W GaN Charger",
+    "category": "Accessories",
+    "description": "Compact 200W gallium-nitride charger with 4 ports (2x USB-C, 2x USB-A). Supports PD 3.1 and QC 5.0. Can charge a laptop, phone, and tablet simultaneously.",
+    "price": 89.99,
+    "specs": {"total_wattage": "200W", "ports": "2x USB-C, 2x USB-A", "protocols": "PD 3.1, QC 5.0", "weight": "340g"}
+  },
+  {
+    "id": "PROD-006",
+    "name": "AuraSound Mini Earbuds",
+    "category": "Audio",
+    "description": "Compact true wireless earbuds with spatial audio, adaptive transparency mode, and IPX5 sweat resistance. 8-hour playtime with 30-hour charging case.",
+    "price": 149.99,
+    "specs": {"driver_size": "12mm", "battery_life": "8h + 30h case", "connectivity": "Bluetooth 5.4", "noise_cancellation": "Hybrid ANC"}
+  },
+  {
+    "id": "PROD-007",
+    "name": "Velocity WorkStation Tower",
+    "category": "Desktops",
+    "description": "Professional desktop workstation with AMD Ryzen 9 7950X, 64GB DDR5 ECC RAM, dual 2TB NVMe SSDs in RAID 0, and NVIDIA RTX A5000 GPU. Built for 3D rendering and AI workloads.",
+    "price": 4299.99,
+    "specs": {"processor": "AMD Ryzen 9 7950X", "ram": "64GB DDR5 ECC", "storage": "2x 2TB NVMe RAID 0", "gpu": "NVIDIA RTX A5000"}
+  },
+  {
+    "id": "PROD-008",
+    "name": "SecureVault 5TB Portable SSD",
+    "category": "Storage",
+    "description": "Military-grade encrypted portable SSD with 5TB capacity and 2000 MB/s read speed. IP68 dust and waterproof rating with hardware AES-256 encryption.",
+    "price": 399.99,
+    "specs": {"capacity": "5TB", "read_speed": "2000 MB/s", "write_speed": "1800 MB/s", "encryption": "AES-256 hardware"}
+  },
+  {
+    "id": "PROD-009",
+    "name": "PixelPro Creator Tablet 12.9",
+    "category": "Tablets",
+    "description": "12.9-inch creative tablet with 4096 pressure levels stylus, 2K display at 144Hz, and Snapdragon 8 Gen 3 processor. Runs desktop-class creative apps.",
+    "price": 1099.99,
+    "specs": {"display": "12.9\" 2K 144Hz", "processor": "Snapdragon 8 Gen 3", "ram": "16GB", "storage": "512GB"}
+  },
+  {
+    "id": "PROD-010",
+    "name": "HomeLink Mesh Router System",
+    "category": "Networking",
+    "description": "Wi-Fi 7 mesh router system covering up to 9,000 sq ft. Tri-band with 10Gbps aggregate speed, supports 200+ devices. Built-in VPN and parental controls.",
+    "price": 599.99,
+    "specs": {"standard": "Wi-Fi 7 (802.11be)", "coverage": "9000 sq ft", "bands": "Tri-band", "ports": "2x 10GbE, 4x 1GbE"}
+  },
+  {
+    "id": "PROD-011",
+    "name": "ErgoPro Standing Desk Frame",
+    "category": "Furniture",
+    "description": "Electric standing desk frame with programmable height memory, anti-collision system, and whisper-quiet dual motors. Supports up to 350 lbs, height range 24-50 inches.",
+    "price": 549.99,
+    "specs": {"height_range": "24-50 inches", "max_load": "350 lbs", "speed": "1.5 in/sec", "noise_level": "<40dB"}
+  },
+  {
+    "id": "PROD-012",
+    "name": "ClearCam 4K Webcam Pro",
+    "category": "Accessories",
+    "description": "4K webcam with auto-framing AI, dual stereo microphones, and background blur. Sony STARVIS sensor for excellent low-light performance. Works with Zoom, Teams, and OBS.",
+    "price": 199.99,
+    "specs": {"resolution": "4K 30fps / 1080p 60fps", "fov": "90°", "sensor": "Sony STARVIS", "connection": "USB-C"}
+  },
+  {
+    "id": "PROD-013",
+    "name": "NexaFit Smart Scale Pro",
+    "category": "Wearables",
+    "description": "Wi-Fi connected smart scale measuring 14 body composition metrics including body fat %, muscle mass, bone density, and metabolic age. Syncs with Apple Health and Google Fit.",
+    "price": 79.99,
+    "specs": {"metrics": "14 body composition", "connectivity": "Wi-Fi + Bluetooth", "users": "Up to 8 profiles", "precision": "50g increments"}
+  },
+  {
+    "id": "PROD-014",
+    "name": "AuraSound Soundbar X3",
+    "category": "Audio",
+    "description": "Dolby Atmos soundbar with wireless subwoofer. 7.1.4 channel system with up-firing speakers for immersive 3D audio. eARC, Spotify Connect, and AirPlay 2 support.",
+    "price": 799.99,
+    "specs": {"channels": "7.1.4", "total_wattage": "900W", "connectivity": "HDMI eARC, Optical, Wi-Fi, Bluetooth", "subwoofer": "10\" wireless"}
+  },
+  {
+    "id": "PROD-015",
+    "name": "Velocity Gaming Laptop 17",
+    "category": "Laptops",
+    "description": "17.3-inch gaming laptop with Intel Core i9-14900HX, 64GB DDR5, 2TB SSD, and NVIDIA RTX 4090 Laptop GPU. 240Hz QHD display with G-Sync. Per-key RGB mechanical keyboard.",
+    "price": 3499.99,
+    "specs": {"processor": "Intel Core i9-14900HX", "ram": "64GB DDR5", "gpu": "RTX 4090 Laptop", "display": "17.3\" QHD 240Hz"}
+  },
+  {
+    "id": "PROD-016",
+    "name": "SmartGrow Indoor Garden Kit",
+    "category": "Smart Home",
+    "description": "Automated indoor garden with full-spectrum LED grow lights, self-watering system, and app-controlled nutrients. Grows herbs, lettuce, and tomatoes year-round. 12 pod capacity.",
+    "price": 179.99,
+    "specs": {"pod_capacity": 12, "light_type": "Full-spectrum LED", "water_tank": "4L", "app_control": "iOS/Android"}
+  },
+  {
+    "id": "PROD-017",
+    "name": "CloudView Curved Ultrawide 34",
+    "category": "Monitors",
+    "description": "34-inch curved ultrawide WQHD monitor. 1000R curvature, 165Hz refresh, 1ms response time. HDR600 certified with quantum dot technology. Ideal for gaming and productivity.",
+    "price": 549.99,
+    "specs": {"resolution": "3440x1440 WQHD", "panel": "VA Quantum Dot", "curvature": "1000R", "response_time": "1ms MPRT"}
+  },
+  {
+    "id": "PROD-018",
+    "name": "AirPure HEPA Smart Purifier",
+    "category": "Smart Home",
+    "description": "Room air purifier with H14 HEPA filter, activated carbon layer, and UV-C sterilization. Covers 750 sq ft, real-time PM2.5 monitoring, auto-adjusts fan speed based on air quality.",
+    "price": 329.99,
+    "specs": {"coverage": "750 sq ft", "filter": "H14 HEPA + Activated Carbon", "cadr": "400 m³/h", "noise_level": "20-50 dB"}
+  },
+  {
+    "id": "PROD-019",
+    "name": "SecureVault Docking Station Pro",
+    "category": "Accessories",
+    "description": "Thunderbolt 4 docking station with 16 ports including dual 4K HDMI, 10GbE Ethernet, SD/microSD readers, and 96W laptop charging. Compatible with Windows, macOS, and Linux.",
+    "price": 299.99,
+    "specs": {"interface": "Thunderbolt 4", "ports": "16 total", "display_output": "Dual 4K@60Hz or Single 8K", "power_delivery": "96W"}
+  },
+  {
+    "id": "PROD-020",
+    "name": "QuantumKey Mechanical Keyboard",
+    "category": "Accessories",
+    "description": "75% wireless mechanical keyboard with hot-swappable switches, gasket mount design, and south-facing RGB. Triple connectivity (2.4GHz, Bluetooth, USB-C). PBT double-shot keycaps.",
+    "price": 169.99,
+    "specs": {"layout": "75%", "switches": "Hot-swappable (Gateron Pro 3.0)", "connectivity": "2.4GHz, BT 5.1, USB-C", "battery": "8000mAh"}
+  }
+]

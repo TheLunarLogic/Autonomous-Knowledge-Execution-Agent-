@@ -1,27 +1,27 @@
 # FastAPI & Server
-fastapi==0.115.12
-uvicorn[standard]==0.34.3
-python-multipart==0.0.20
+fastapi>=0.115.9
+uvicorn[standard]>=0.34.0
+python-multipart>=0.0.20
 
 # Database
-sqlalchemy[asyncio]==2.0.41
-asyncpg==0.30.0
-alembic==1.15.2
+sqlalchemy[asyncio]>=2.0.40
+asyncpg>=0.30.0
+alembic>=1.15.0
 
 # LLM & Agent
-langchain==0.3.25
-langchain-aws==0.2.17
-langchain-community==0.3.24
-langgraph==0.4.1
-boto3==1.39.2
+langchain>=0.3.25
+langchain-aws>=0.2.17
+langchain-community>=0.3.24
+langgraph>=0.4.1
+boto3>=1.39.0
 
 # Vector Database
-chromadb==1.0.10
+chromadb>=1.0.10
 
 # Schemas & Config
-pydantic==2.11.4
-pydantic-settings==2.9.1
-python-dotenv==1.1.0
+pydantic>=2.11.0
+pydantic-settings>=2.9.0
+python-dotenv>=1.1.0
 
 # Utilities
-httpx==0.28.1
+httpx>=0.28.0
