@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-export default function QueryInput({ onSubmit, isLoading }) {
-  const [query, setQuery] = useState("");
-
+export default function QueryInput({ query, setQuery, onSubmit, isLoading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim() || isLoading) return;

@@ -1,4 +1,4 @@
-export default function AnswerCard({ data, onApprove }) {
+export default function AnswerCard({ data, onApprove, onReject }) {
   if (!data) return null;
 
   const { answer, action_taken, explanation, require_approval } = data;
@@ -24,9 +24,14 @@ export default function AnswerCard({ data, onApprove }) {
       {require_approval && (
         <div className="approval-banner">
           <span>🔒 This action requires your approval before execution.</span>
-          <button className="approve-btn" onClick={onApprove}>
-            ✓ Approve &amp; Execute
-          </button>
+          <div className="approval-actions">
+            <button className="approve-btn" onClick={onApprove}>
+              ✓ Approve &amp; Execute
+            </button>
+            <button className="reject-btn" onClick={onReject}>
+              ✕ Reject
+            </button>
+          </div>
         </div>
       )}
 
@@ -38,8 +43,11 @@ export default function AnswerCard({ data, onApprove }) {
 
       {/* Explanation */}
       <div className="explanation-section">
-        <h3>Why this action?</h3>
+        <h3>Behind the Scenes (Backend Reasoning)</h3>
         <p>{explanation}</p>
+        <div className="backend-activity">
+          <strong>Tool Called:</strong> <code>{action_taken}</code>
+        </div>
       </div>
     </div>
   );
