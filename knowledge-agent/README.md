@@ -1,246 +1,146 @@
-# 🧠 Autonomous Knowledge Execution Agent (AKEA)
+# Autonomous Knowledge Execution Agent
 
-An AI-powered full-stack application that retrieves knowledge from internal sources, reasons over it, decides and executes actions autonomously, and explains every decision — with full audit logging.
+> A full-stack AI agent application that autonomously reasons over organizational knowledge, decides on appropriate actions, and requires human-in-the-loop approval for critical operations.
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green?logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-18+-blue?logo=react&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-316192?logo=postgresql&logoColor=white)
-![LangGraph](https://img.shields.io/badge/LangGraph-0.4+-purple)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green.svg)
+![React](https://img.shields.io/badge/React-18.x-blue.svg)
 
----
+## 📖 Overview
 
-## ✨ What It Does
+The **Autonomous Knowledge Execution Agent** is an advanced AI system built with LangGraph and AWS Bedrock. Unlike simple chatbots, this agent processes a user's natural language request by querying internal databases, evaluating the context, and independently deciding what action to take. 
 
-```
-User Query → Retrieve Knowledge → Reason → Decide Action → Execute → Explain
-```
+If the agent decides a critical action is required (e.g., flagging a security issue), it safely pauses execution and requests **human approval**, combining the speed of autonomous AI with the safety of human oversight.
 
-1. **Retrieve** — Searches a vector database (ChromaDB) for relevant knowledge chunks
-2. **Reason** — LLM analyzes retrieved data in context of the query
-3. **Decide** — Picks an action: `answer_question`, `generate_report`, `flag_issue`, or `no_action`
-4. **Execute** — Runs the chosen action function
-5. **Explain** — Generates a human-readable explanation of the decision
-6. **Audit** — Logs every execution to PostgreSQL for transparency
+### 🌟 Key Features
 
-### 🔐 Bonus Features
-- **Short-term memory** — Maintains last 5 queries for follow-up context
-- **Approval flow** — Critical actions (e.g., `flag_issue`) require user confirmation
-- **Empty retrieval handling** — Explicitly states when no knowledge matches
+- **Semantic Knowledge Retrieval**: Integrates ChromaDB for vector-based semantic search alongside PostgreSQL for structured relational data.
+- **Autonomous Reasoning (LangGraph)**: Implements a structured directed graph pipeline:
+  1. `Retrieve`: Fetches relevant knowledge base items.
+  2. `Reason`: Synthesizes retrieved data against the user query.
+  3. `Decide`: Picks the most optimal business action (`answer_question`, `generate_report`, `flag_issue`, or `no_action`).
+  4. `Execute`: Runs the action logic.
+  5. `Explain`: Returns a human-readable explanation of why the decision was made.
+- **Human-in-the-Loop Security**: Critical actions (like `flag_issue`) are blocked automatically until explicitly approved via the API.
+- **Complete Audit Trail**: Every query, reasoning step, chosen action, and execution result is logged persistently in PostgreSQL for compliance and observability.
 
 ---
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────────────┐
-│                React Frontend                    │
-│  (Query Input → Answer Card → Audit Log Viewer) │
-└────────────────────┬────────────────────────────┘
-                     │ HTTP (Axios)
-┌────────────────────▼────────────────────────────┐
-│              FastAPI Backend                     │
-│  POST /api/v1/ask    GET /api/v1/logs           │
-├─────────────────────────────────────────────────┤
-│           LangGraph Agent Pipeline               │
-│  retrieve → reason → decide → execute → explain │
-├──────────────┬──────────────┬───────────────────┤
-│  PostgreSQL  │   ChromaDB   │   AWS Bedrock     │
-│  (Knowledge  │   (Vector    │   (LLM +          │
-│   + Audit)   │    Search)   │    Embeddings)    │
-└──────────────┴──────────────┴───────────────────┘
-```
-
----
-
-## 📁 Project Structure
-
-```
-knowledge-agent/
-├── backend/
-│   ├── app/
-│   │   ├── main.py              # FastAPI entry point + lifespan
-│   │   ├── core/
-│   │   │   ├── config.py        # Pydantic Settings (.env)
-│   │   │   └── logging.py       # Structured logger
-│   │   ├── api/v1/
-│   │   │   ├── router.py        # v1 route combiner
-│   │   │   └── routes/
-│   │   │       ├── ask.py       # POST /api/v1/ask
-│   │   │       └── logs.py      # GET /api/v1/logs
-│   │   ├── db/
-│   │   │   ├── base.py          # SQLAlchemy base
-│   │   │   ├── session.py       # Async engine + session
-│   │   │   └── models.py        # KnowledgeItem + AuditLog
-│   │   ├── schemas/
-│   │   │   ├── query.py         # QueryRequest/Response
-│   │   │   └── log.py           # AuditLogResponse
-│   │   ├── knowledge/
-│   │   │   ├── loader.py        # JSON/CSV → Postgres + ChromaDB
-│   │   │   └── vector_store.py  # ChromaDB retrieve()
-│   │   ├── agent/
-│   │   │   ├── graph.py         # LangGraph state machine
-│   │   │   ├── nodes.py         # 5 pipeline nodes
-│   │   │   └── actions.py       # Action functions
-│   │   ├── services/
-│   │   │   └── audit_service.py # Audit log CRUD
-│   │   └── utils/helpers.py
-│   ├── alembic/                 # DB migrations
-│   ├── data/                    # Sample JSON + CSV
-│   ├── requirements.txt
-│   └── .env.example
-├── frontend/
-│   ├── src/
-│   │   ├── api/agentApi.js
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── package.json
-└── README.md
-```
+- **Frontend**: Built with **Next.js** and **React**, styled with **Tailwind CSS**. Provides a clean chat-like interface to view the agent's thought process and approve blocked actions.
+- **Backend**: High-performance asynchronous API powered by **FastAPI**.
+- **LLM Engine**: Powered by AWS Bedrock (`deepseek.v3.2` / `amazon.titan-embed-text-v2:0`) via `langchain_aws` using the modern Converse API format.
+- **Databases**: 
+  - **PostgreSQL (via SQLAlchemy/Alembic)**: Stores knowledge base metadata, categories, and audit logs.
+  - **ChromaDB**: Local vector store for document embeddings.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- PostgreSQL server running locally
+- AWS Account with Bedrock model access
 
-- **Python 3.11+** (via Conda)
-- **Node.js 18+**
-- **PostgreSQL 15+** running on `localhost:5432`
-- **AWS Account** with Bedrock access (for LLM)
+### 1. Backend Setup
 
-### 1. Clone the Repository
+1. **Clone and Setup Environment**
+   ```bash
+   git clone <your-repo-url>
+   cd knowledge-agent/backend
+   conda create -n knowledge-agent python=3.10
+   conda activate knowledge-agent
+   pip install -r requirements.txt
+   ```
 
-```bash
-git clone https://github.com/TheLunarLogic/Autonomous-Knowledge-Execution-Agent-.git
-cd Autonomous-Knowledge-Execution-Agent-/knowledge-agent
-```
+2. **Configure Environment Variables**
+   Create a `.env` file in the `backend/` directory:
+   ```env
+   # Database
+   DATABASE_URL=postgresql+asyncpg://postgres:yourpassword@localhost:5432/knowledge_db
 
-### 2. Backend Setup
+   # AWS Bedrock
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   AWS_REGION=us-east-1
+   BEDROCK_MODEL_ID=deepseek.v3.2
+   ```
 
-```bash
-# Create and activate conda environment
-conda create -n knowledge-agent python=3.11 -y
-conda activate knowledge-agent
+3. **Database Migrations**
+   Initialize the PostgreSQL schema:
+   ```bash
+   alembic upgrade head
+   ```
 
-# Install dependencies
-cd backend
-pip install -r requirements.txt
+4. **Start the API Server**
+   ```bash
+   uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+   ```
+   *The API documentation will be available at `http://127.0.0.1:8000/docs`.*
 
-# Configure environment
-cp .env.example .env
-# Edit .env with your database URL and AWS credentials
+### 2. Frontend Setup
 
-# Create the PostgreSQL database
-psql -U postgres -c "CREATE DATABASE knowledge_agent;"
+1. **Navigate to the Frontend Directory**
+   ```bash
+   cd ../frontend
+   ```
 
-# Run database migrations
-alembic upgrade head
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-# Start the backend
-uvicorn app.main:app --reload --port 8000
-```
-
-### 3. Load Sample Knowledge
-
-With the backend running, load the sample data:
-
-```bash
-curl -X POST http://localhost:8000/api/v1/load-knowledge
-```
-
-### 4. Frontend Setup
-
-```bash
-# In a new terminal
-cd frontend
-npm install
-npm run dev
-```
-
-Open **http://localhost:5173** in your browser.
-
----
-
-## 🔧 Configuration
-
-Edit `backend/.env`:
-
-```env
-# Database
-DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/knowledge_agent
-
-# AWS Bedrock
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=your-key
-AWS_SECRET_ACCESS_KEY=your-secret
-BEDROCK_MODEL_ID=anthropic.claude-3-sonnet-20240229-v1:0
-BEDROCK_EMBEDDING_MODEL_ID=amazon.titan-embed-text-v1
-
-# ChromaDB
-CHROMA_PATH=./chroma_data
-```
+3. **Start the Development Server**
+   ```bash
+   npm run dev
+   ```
+   *The application will be available at `http://localhost:3000`.*
 
 ---
 
-## 📡 API Endpoints
+## 🧪 Testing the Agent
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/ask` | Submit a query to the agent |
-| `GET` | `/api/v1/logs` | Fetch audit log entries |
-| `POST` | `/api/v1/load-knowledge` | Load sample data into knowledge base |
-| `GET` | `/health` | Health check |
+You can test the agent's reasoning capabilities directly via the API. 
+A helper script `test_queries.py` is included in the backend directory.
 
-### Example Request
-
+Run the tests:
 ```bash
-curl -X POST http://localhost:8000/api/v1/ask \
-  -H "Content-Type: application/json" \
-  -d '{"query": "What wireless headphones do you have?"}'
+python test_queries.py
 ```
 
-### Example Response
-
-```json
-{
-  "answer": "Based on the available knowledge:\n\nWe have two wireless audio products...",
-  "action_taken": "answer_question",
-  "explanation": "I found relevant product information in the knowledge base matching your query about wireless headphones.",
-  "require_approval": false
-}
+**Example Output:**
+```text
+Q: Flag a security issue for James Wilson.
+Action: flag_issue
+Explanation: I chose to flag a security issue for James Wilson because your request was clear...
+Requires Approval: True
 ```
 
 ---
 
-## 🧪 Sample Test Queries
+## 🛠️ Project Structure
 
-| # | Query | Expected Action |
-|---|-------|-----------------|
-| 1 | "What wireless headphones do you have?" | `answer_question` |
-| 2 | "Generate a report of all premium products" | `generate_report` |
-| 3 | "What's the weather today?" | `no_action` |
-| 4 | "Tell me more about the first one" | `answer_question` (uses memory) |
-| 5 | "Flag all products with price over $500" | `flag_issue` (requires approval) |
+```text
+knowledge-agent/
+├── backend/
+│   ├── alembic/              # Database migration scripts
+│   ├── app/
+│   │   ├── agent/            # LangGraph nodes and execution logic
+│   │   ├── api/              # FastAPI endpoints (/ask, /load-knowledge)
+│   │   ├── core/             # Configuration and logging
+│   │   ├── db/               # SQLAlchemy session and models
+│   │   ├── knowledge/        # ChromaDB setup and data loaders
+│   │   └── schemas/          # Pydantic validation models
+│   └── test_queries.py       # API test script
+├── frontend/
+│   ├── src/                  # Next.js React application
+│   └── package.json
+└── README.md
+```
 
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Backend | Python 3.11, FastAPI, SQLAlchemy (async) |
-| Database | PostgreSQL + Alembic migrations |
-| Vector DB | ChromaDB (persistent, local) |
-| Agent Engine | LangGraph (state machine) |
-| LLM | AWS Bedrock (Claude / Titan) |
-| Frontend | React (Vite), Axios |
-| Schemas | Pydantic v2 |
-
----
-
-## 📝 License
-
-MIT
+## 📄 License
+This project is licensed under the MIT License.

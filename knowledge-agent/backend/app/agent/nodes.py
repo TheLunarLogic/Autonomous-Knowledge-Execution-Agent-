@@ -4,7 +4,7 @@ LangGraph node functions — each node transforms the agent state.
 
 import json
 
-from langchain_aws import BedrockLLM, ChatBedrock
+from langchain_aws import ChatBedrockConverse
 
 from app.agent.actions import ACTION_REGISTRY, CRITICAL_ACTIONS
 from app.core.config import settings
@@ -12,13 +12,14 @@ from app.core.logging import logger
 from app.knowledge.vector_store import get_vector_store
 
 
-def _get_llm() -> ChatBedrock:
-    """Create a Bedrock LLM client."""
-    return ChatBedrock(
+def _get_llm() -> ChatBedrockConverse:
+    """Create a Bedrock LLM client using Converse API."""
+    return ChatBedrockConverse(
         model_id=settings.BEDROCK_MODEL_ID,
         region_name=settings.AWS_REGION,
         credentials_profile_name=None,
-        model_kwargs={"temperature": 0.3, "max_tokens": 1024},
+        temperature=0.3,
+        max_tokens=1024,
     )
 
 
@@ -151,7 +152,7 @@ def decide_node(state: dict) -> dict:
             chosen = "no_action"
         elif any(word in query.lower() for word in ["report", "summary", "overview", "list all", "compare"]):
             chosen = "generate_report"
-        elif any(word in query.lower() for word in ["problem", "issue", "flag", "concern", "wrong"]):
+        elif any(word in query.lower() for word in ["problem", "issue", "flag", "concern", "wrong", "block"]):
             chosen = "flag_issue"
         else:
             chosen = "answer_question"
